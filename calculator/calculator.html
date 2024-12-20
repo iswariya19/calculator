@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      body {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: medium;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 150px;
+      }
+      #box {
+        max-width: 500px;
+        max-height: 500px;
+        /* background-color: #007bff; */
+        /* color: white; */
+        /* display: flex; */
+
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 16px;
+        text-align: center;
+      }
+      .Buttons {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        /* background: #007bff; */
+        /* color: white; */
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .buttons button:hover {
+        background: #0056b3;
+      }
+
+      #result {
+        margin-top: 20px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator" id="box">
+      <h1>Calculator</h1>
+      <input
+        type="number"
+        placeholder="Enter the first number"
+        id="num1"
+        required
+      />
+      <input
+        type="number"
+        placeholder="enter the second number"
+        id="num2"
+        required
+      />
+      <div class="Buttons">
+        <button onclick="calculate('add')">ADD</button>
+        <button onclick="calculate('subtract')">Sub</button>
+        <button onclick="calculate('multiply')">Multiplication</button>
+        <button onclick="calculate('divide')">Divition</button>
+      </div>
+      <h2 id="result">result</h2>
+    </div>
+    <script>
+      function calculate(operation) {
+        // Get numbers from inputs
+        const num1 = parseFloat(document.getElementById("num1").value);
+        const num2 = parseFloat(document.getElementById("num2").value);
+
+        // Check for valid input
+        if (isNaN(num1) || isNaN(num2)) {
+          document.getElementById("result").innerText =
+            "Please enter valid numbers!";
+          return;
+        }
+
+        // Perform the calculation
+        let result;
+        if (operation === "add") {
+          result = num1 + num2;
+        } else if (operation === "subtract") {
+          result = num1 - num2;
+        } else if (operation === "multiply") {
+          result = num1 * num2;
+        } else if (operation === "divide") {
+          result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
+        }
+
+        // Display the result
+        document.getElementById("result").innerText = `Result: ${result}`;
+      }
+    </script>
+  </body>
+</html>
